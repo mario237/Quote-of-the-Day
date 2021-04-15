@@ -20,10 +20,6 @@ var listOfQuotes = [
         author: "Marcus Tullius Cicero"
     },
     {
-        quote: "Always forgive your enemies; nothing annoys them so much.",
-        author: "Oscar Wilde"
-    },
-    {
         quote: "Without music, life would be a mistake.",
         author: "Friedrich Nietzsche"
     },
@@ -35,13 +31,20 @@ var getNewQuoteBtn = document.getElementById('getNewQuoteBtn');
 
 getNewQuoteBtn.addEventListener('click', getRandomQuote)
 
+var currentQuote = 0;
+
 
 function getRandomQuote() {
     var quoteIndex = Math.floor(Math.random() * listOfQuotes.length);
 
 
-    document.getElementById('quoteText').innerHTML = `&ldquo; ${listOfQuotes[quoteIndex].quote} &rdquo;`;
-    document.getElementById('quoteAuthor').innerHTML = `&minus; ${listOfQuotes[quoteIndex].author}`;
-   
+    if (currentQuote == quoteIndex) {
+        getRandomQuote()
+    }
+    else {
+        document.getElementById('quoteText').innerHTML = `&ldquo; ${listOfQuotes[quoteIndex].quote} &rdquo;`;
+        document.getElementById('quoteAuthor').innerHTML = `&minus; ${listOfQuotes[quoteIndex].author}`;
+        currentQuote = quoteIndex;
+    }
 
 }
